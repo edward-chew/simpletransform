@@ -75,19 +75,7 @@ class T5Model:
             if self.args.n_gpu > 0:
                 torch.cuda.manual_seed_all(self.args.manual_seed)
 
-        if use_cuda:
-            if torch.cuda.is_available():
-                if cuda_device == -1:
-                    self.device = torch.device("cuda")
-                else:
-                    self.device = torch.device(f"cuda:{cuda_device}")
-            else:
-                raise ValueError(
-                    "'use_cuda' set to True when cuda is unavailable."
-                    "Make sure CUDA is available or set `use_cuda=False`."
-                )
-        else:
-            self.device = "cpu"
+        self.device = "cpu"
 
         self.results = {}
 
